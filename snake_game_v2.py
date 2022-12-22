@@ -98,19 +98,19 @@ wn.onkeypress(go_right,"d")
 def move():
     if head.direction == "up":
         y = head.ycor()
-        head.sety(y+20)
+        head.sety(y+15)
 
     if head.direction == "down":
         y = head.ycor()
-        head.sety(y-20)
+        head.sety(y-15)
 
     if head.direction == "left":
         x = head.xcor()
-        head.setx(x-20)
+        head.setx(x-15)
 
     if head.direction == "right":
         x = head.xcor()
-        head.setx(x+20)
+        head.setx(x+15)
         
         
 # main game loop
@@ -166,18 +166,18 @@ while True:
         x1 = random.randint(-290,290)
         y1 = random.randint(-290,290)
         special_food.goto(x1,y1)
-        if head.distance(special_food) < 20:
-            special_food.goto(1000,1000)        
-            score += 5
-            if score > high_score:
-                high_score = score
-
-            pen.clear()
-            pen.write("Score: {} High Score: {}".format(score, high_score),align = "center", 
-                      font=("Courier",24,"normal"))
         food_count = 0
+        
+    if head.distance(special_food) < 20:
+        special_food.goto(1000,1000)        
+        score += 5
+        if score > high_score:
+            high_score = score
 
-                                                            
+        pen.clear()
+        pen.write("Score: {} High Score: {}".format(score, high_score),align = "center", 
+                  font=("Courier",24,"normal"))
+                                                         
     # di chuyen phan duoi cuoi cung truoc theo thu tu nguoc
     for index in range(len(body)-1, 0, -1):
         x = body[index-1].xcor()
@@ -194,7 +194,7 @@ while True:
     
     # kiem tra dau ran co dam vao body khong?
     for i in body:
-        if i.distance(head) < 20:
+        if i.distance(head) < 15:
             time.sleep(1)
             head.goto(0,0)
             head.direction = "stop"
